@@ -1,0 +1,67 @@
+/* CoinPage.css */
+
+.container {
+    display: flex;
+    flex-wrap: wrap;
+  }
+  
+  .sidebar {
+    width: 30%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 25px;
+    border-right: 2px solid grey;
+  }
+  
+  .heading {
+    font-weight: 700;
+    margin-bottom: 20px;
+    font-family: Montserrat, sans-serif; 
+  }
+  
+  .description {
+    width: 100%;
+    font-family: Montserrat, sans-serif; 
+    padding: 25px;
+    padding-bottom: 15px;
+    padding-top: 0;
+    text-align: justify;
+  }
+  
+  .marketData {
+    align-self: start;
+    padding: 25px;
+    padding-top: 10px;
+    width: 100%;
+  }
+  
+
+  
+  @media (max-width: 960px) {
+    
+    .sidebar {
+      width: 100%;
+    }
+   
+    .marketData {
+      display: flex;
+      justify-content: space-around;
+    }
+  }
+  
+  @media (max-width: 600px) {
+   
+    .sidebar {
+      align-items: center;
+    }
+    
+   
+    .marketData {
+      flex-direction: column;
+      align-items: center;
+    }
+  
+  
+   
+  }
