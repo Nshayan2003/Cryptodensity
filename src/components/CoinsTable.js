@@ -164,11 +164,14 @@ const CoinsTable = () => {
                         <TableCell
                           align='right'
                           style={{
-                            color: profit > 0 ? 'rgb(14, 203, 129)' : 'red',
+                            color:
+                              row.price_change_percentage_24h > 0
+                                ? 'green'
+                                : 'red',
                             fontWeight: 500
                           }}
                         >
-                          {profit && '+'}
+                          {row.price_change_percentage_24h && '+'}
                           {row.price_change_percentage_24h.toFixed(2)}%
                         </TableCell>
                         <TableCell align='right' color='white'>

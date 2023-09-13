@@ -19,15 +19,26 @@ const useStyles = makeStyles(theme => ({
     cursor: 'pointer',
     textTransform: 'uppercase',
     color: 'white'
+  },
+  profit: {
+    color: 'green',
+    fontWeight: 500
+  },
+  loss: {
+    color: 'red',
+    fontWeight: 500
   }
 }))
+
 export function numberWithCommas (x) {
   return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',')
 }
+
 const Carousel = () => {
   const [trending, setTrending] = useState([])
   const classes = useStyles()
   const { currency, symbol } = CryptoState()
+
   const fetchTrendingCoins = async () => {
     const { data } = await axios.get(TrendingCoins(currency))
     setTrending(data)
@@ -36,8 +47,10 @@ const Carousel = () => {
   useEffect(() => {
     fetchTrendingCoins()
   }, [currency])
+
   const items = trending.map(coin => {
-    let profit = coin.price_channge_percentage_24th >= 0
+    const profit = coin.price_change_percentage_24h >= 0
+
     return (
       <Link className={classes.carouselItem} to={`/coins/${coin.id}`}>
         <img
@@ -49,12 +62,7 @@ const Carousel = () => {
         <span>
           {coin?.symbol}
           &nbsp;
-          <span
-            style={{
-              color: profit > 0 ? 'rgb(14, 203, 129)' : 'red',
-              fontWeight: 500
-            }}
-          >
+          <span className={profit ? classes.profit : classes.loss}>
             {profit && '+'}
             {coin?.price_change_percentage_24h?.toFixed(2)}%
           </span>
@@ -65,6 +73,7 @@ const Carousel = () => {
       </Link>
     )
   })
+
   const responsive = {
     0: {
       items: 2
@@ -73,6 +82,7 @@ const Carousel = () => {
       items: 4
     }
   }
+
   return (
     <div className={classes.carousel}>
       <AliceCarousel
